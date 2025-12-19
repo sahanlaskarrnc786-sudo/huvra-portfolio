@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Huvra - Unique Stickers & Digital Art</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #fff;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            z-index: 1000;
+            transition: background 0.3s;
+        }
+        header.scrolled {
+            background: rgba(0, 0, 0, 0.9);
+        }
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo {
+            max-width: 50px;
+            height: auto;
+            transition: transform 0.3s;
+        }
+        .logo:hover {
+            transform: rotate(10deg) scale(1.1);
+        }
+        header h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://via.placeholder.com/1920x1080/000000/ffffff?text=Art+Background') no-repeat center center/cover;
+            opacity: 0.3;
+            z-index: -1;
+        }
+        .hero h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease-out;
+        }
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            animation: fadeInUp 1.2s ease-out;
+        }
+        .hero-btn {
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            color: #fff;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeInUp 1.4s ease-out;
+        }
+        .hero-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 80px 0;
+            background: #f8f9fa;
+            color: #333;
+        }
+        .gallery h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: #2c3e50;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .gallery-item {
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .gallery-item .overlay {
+            padding: 20px;
+            text-align: center;
+        }
+        .gallery-item .overlay h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        /* Shop Section */
+        .shop-section {
+            padding: 80px 0;
+            text-align: center;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .shop-btn {
+            background: #fff;
+            color: #333;
+            padding: 18px 40px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: transform 0.3s, background 0.3s;
+            display: inline-block;
+        }
+        .shop-btn:hover {
+            transform: scale(1.05);
+            background: #f8f9fa;
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: #fff;
+            padding: 40px 0;
+            text-align: center;
+        }
+        footer p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        .social-icons a {
+            color: #fff;
+            margin: 0 15px;
+            font-size: 2rem;
+            transition: transform 0.3s, color 0.3s;
+        }
+        .social-icons a:hover {
+            transform: scale(1.2);
+            color: #f093fb;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            header .header-content {
+                justify-content: center;
+            }
+            header h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <img src="logo.png" alt="Huvra Logo" class="logo">
+                <h1>Huvra</h1>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h2>Unique Stickers & Art for Your Lifestyle</h2>
+            <p>Discover my collection of original designs that add a touch of creativity to your everyday life.</p>
+            <a href="#gallery" class="hero-btn">Explore Designs</a>
+        </div>
+    </section>
+
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <h2>My Designs</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/300x200/667eea/ffffff?text=Design+1" alt="Design 1">
+                    <div class="overlay">
+                        <h3>Sticker Design 1</h3>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/300x200/764ba2/ffffff?text=Design+2" alt="Design 2">
+                    <div class="overlay">
+                        <h3>Digital Art 2</h3>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/300x200/f093fb/ffffff?text=Design+3" alt="Design 3">
+                    <div class="overlay">
+                        <h3>Sticker Design 3</h3>
+                    </div>
+                </div>
+                <div class="gallery-item
